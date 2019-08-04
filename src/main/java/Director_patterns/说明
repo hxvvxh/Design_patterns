@@ -1,0 +1,30 @@
+（1）建造者模式（Builder Pattern）使用多个简单的对象一步一步构建成一个复杂的对象。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。
+　　一个 Builder 类会一步一步构造最终的对象。该 Builder 类是独立于其他对象的。
+
+具体构建的顺序
+Product 
+Acer
+Dell
+Builder
+AcerBuilder
+DellBuilder
+Director
+
+最终实现
+Client
+
+
+在这里，Acer 类和 Dell 类是空的，如果是这种情况，那么它们可以省略掉，如果Product也不是最终想要的，那么它也可以被省略掉，最终剩下的就只有 Director、Builder、和具体的 Bulider 实现类。
+在这里，Acer 类和 Dell 类是有关系的两个类，它们都是电脑的品牌之一，如果遇到两个或多个没有太多关系的类，假设 Acer 类代表电脑，Dell 类代表汽车，很明显，Acer 类和Dell 类就不应该再有共同的父类，也就是这种情况下，Product这个抽象类不存在了，这时候问题就来了，那么 Builder 接口的规定的 getFinalResult() 方法的返回值怎么确定呢？？
+　　如果它的返回值类型是 Acer，那么 DellBuilder 类就会有问题，如果它的返回值类型是 Dell，那么 AcerBuilder 类就会有问题；
+　　很明显，这是由于类型不能正确匹配引起的，如果是这种情况，可以将 Product 设计成标识接口（空接口，接口里面没有规定任何行为方法），再让这些没有相互关系的具体产品类
+都去实现这个接口，那么 Builder 接口里面规定的 getFinalResult() 方法的返回值类型依然是 Product 类型，这样一来问题就解决了。
+
+作者：博麟K
+链接：https://www.jianshu.com/p/0899376f9689
+来源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
+
+
+
+
